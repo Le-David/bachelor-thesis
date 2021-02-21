@@ -114,6 +114,8 @@ class StarterSite extends Timber\Site {
 		$context['stuff'] = 'I am a value set in your functions.php file';
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
 		$context['menu']  = new Timber\Menu();
+		$context['navigation']  = new Timber\Menu('primary-navigation');
+		$context['footer']  = new Timber\Menu('footer');
 		$context['site']  = $this;
 		return $context;
 	}
