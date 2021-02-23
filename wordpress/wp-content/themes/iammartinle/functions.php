@@ -165,3 +165,9 @@ class StarterSite extends Timber\Site {
 }
 
 new StarterSite();
+
+/**
+ * Custom gutenberg blocks
+ */
+
+require get_template_directory() . '/src/gutenberg_blocks/asideMediaContent.php';
