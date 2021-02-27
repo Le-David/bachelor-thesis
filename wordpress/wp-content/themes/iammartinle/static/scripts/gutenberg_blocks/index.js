@@ -5,6 +5,7 @@ const { useBlockProps } = wp.blockEditor
 registerBlockType('gutenberg-block/aside-media-content', {
     apiVersion: 2,
     title: 'Aside media content',
+    description: 'Block to generate a custom aside media content',
     icon: 'align-left', // icon used in admin section
     category: 'layout', // under which category will be find
     keywords: [ __( 'media' ), __( 'image' ), __( 'photo' ), __( 'content' ), __( 'text' ) ], // another aliases when need to find certain block
