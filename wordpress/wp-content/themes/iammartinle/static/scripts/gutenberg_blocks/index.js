@@ -1,8 +1,9 @@
 const { __ } = wp.i18n
 const { registerBlockType } = wp.blocks
+const { useBlockProps } = wp.blockEditor
 
 registerBlockType('gutenberg-block/aside-media-content', {
-    apiVersion: 2, // enabling blocks to render their own block wrapper element
+    apiVersion: 2,
     title: 'Aside media content',
     icon: 'align-left', // icon used in admin section
     category: 'layout', // under which category will be find
