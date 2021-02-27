@@ -1,6 +1,5 @@
 const { __ } = wp.i18n
-const { registerBlockType } = wp.block
-const { useBlockProps } = wp.block-editor
+const { registerBlockType } = wp.blocks
 
 registerBlockType('gutenberg-block/aside-media-content', {
     apiVersion: 2, // enabling blocks to render their own block wrapper element

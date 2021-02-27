@@ -9,7 +9,7 @@ function aside_media_content() {
     wp_register_script(
         'aside-media-content', // $handle - (string)(Required) Name of the script.
         get_template_directory_uri() . '/static/scripts/gutenberg_blocks/asideMediaContent.js', // $src - (string|bool) (Required) Full URL of the script, or path of the script relative to the WordPress root directory.
-        array( 'wp-i18n', 'wp-block', 'wp-block-editor' ) // $deps - (string[]) (Optional) An array of registered script handles this script depends on.
+        array( 'wp-i18n', 'wp-blocks' ) // $deps - (string[]) (Optional) An array of registered script handles this script depends on.
     );
 
     register_block_type(
