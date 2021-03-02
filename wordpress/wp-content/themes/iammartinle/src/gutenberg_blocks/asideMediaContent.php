@@ -9,7 +9,7 @@ function aside_media_content() {
     wp_register_script(
         'aside-media-content-script', // $handle - (string)(Required) Name of the script.
         get_template_directory_uri() . '/build/scripts/index.js', // $src - (string|bool) (Required) Full URL of the script, or path of the script relative to the WordPress root directory.
-        array( 'wp-i18n', 'wp-blocks', 'wp-block-editor' ) // $deps - (string[]) (Optional) An array of registered script handles this script depends on.
+        array( 'wp-i18n', 'wp-blocks', 'wp-block-editor', 'wp-components', 'wp-editor' ) // $deps - (string[]) (Optional) An array of registered script handles this script depends on.
     );
 
     wp_register_style(

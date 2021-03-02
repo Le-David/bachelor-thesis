@@ -1,6 +1,14 @@
 const { __ } = wp.i18n
 const { registerBlockType } = wp.blocks
-const { useBlockProps, RichText } = wp.blockEditor
+const { IconButton } = wp.components
+const {
+    MediaUpload,
+    MediaUploadCheck,
+    RichText,
+    useBlockProps
+} = wp.blockEditor
+
+const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
 registerBlockType('gutenberg-block/aside-media-content', {
     apiVersion: 2,
@@ -20,6 +28,9 @@ registerBlockType('gutenberg-block/aside-media-content', {
             type: 'string',
             source: 'html',
             selector: 'p'
+        },
+        media: {
+            type: 'string',
         }
     },
 
@@ -29,6 +40,7 @@ registerBlockType('gutenberg-block/aside-media-content', {
             attributes: {
                 title, 
                 content,
+                media,
             },
             setAttributes,
         } = props
@@ -37,6 +49,22 @@ registerBlockType('gutenberg-block/aside-media-content', {
 
         return ([
             <div { ...blockProps}>
+                <MediaUploadCheck>
+                    <MediaUpload 
+                        onSelect={ (media) => setAttributes({ media: media.sizes.full.url }) }
+                        allowedTypes={ ALLOWED_MEDIA_TYPES }
+                        value={ media }
+                        render={ ( { open } ) => (
+                            <IconButton
+                                onClick={ open }
+                                icon="upload"
+                                className="editor-media-placeholder__button is-button is-default is-large"
+                            >
+                                Upload/edit image
+                            </IconButton>
+                        ) }
+                    />
+                </MediaUploadCheck>
                 <RichText
                     tagName="h2"
                     value={ title }
@@ -48,7 +76,6 @@ registerBlockType('gutenberg-block/aside-media-content', {
                     value={ content }
                     placeholder="Add content..."
                     onChange={ (content) => setAttributes({ content }) }
-                    multiline={ true }
                 />
             </div>
         ])
@@ -59,7 +86,8 @@ registerBlockType('gutenberg-block/aside-media-content', {
         const {
             attributes: {
                 title, 
-                content
+                content,
+                media,
             },
         } = props
 
@@ -67,9 +95,10 @@ registerBlockType('gutenberg-block/aside-media-content', {
 
         return (
             <div { ...blockProps}>
+                <img src={ media } />
                 <h2>{ title }</h2>
                 <RichText.Content
-                    tagName="div"
+                    tagName="p"
                     value={ content }
                 />
             </div>
