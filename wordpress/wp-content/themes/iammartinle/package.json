@@ -8,12 +8,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass --watch static/sass:assets/styles"
+    "sass": "sass --watch static/sass:assets/styles",
+    "build:scripts": "wp-scripts build /static/scripts/gutenberg_blocks/index.js --output-path=build/scripts",
+    "watch:scripts": "wp-scripts start /static/scripts/gutenberg_blocks/index.js --output-path=build/scripts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@wordpress/scripts": "13.0.3",
     "sass": "^1.32.7"
   }
 }
