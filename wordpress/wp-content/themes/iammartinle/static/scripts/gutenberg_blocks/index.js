@@ -31,6 +31,7 @@ registerBlockType('gutenberg-block/aside-media-content', {
         },
         media: {
             type: 'string',
+            default: 'https://via.placeholder.com/710',
         }
     },
 
@@ -38,7 +39,7 @@ registerBlockType('gutenberg-block/aside-media-content', {
 
         const {
             attributes: {
-                title, 
+                title,
                 content,
                 media,
             },
@@ -47,36 +48,45 @@ registerBlockType('gutenberg-block/aside-media-content', {
 
         const blockProps = useBlockProps();
 
+        function onSelectImage(newMedia){
+            setAttributes({ media: newMedia.sizes.full.url })
+        }
+
         return ([
-            <div { ...blockProps}>
+            <div { ...blockProps} className={ `${blockProps.className} asideMediaContentEditor` }>
                 <MediaUploadCheck>
                     <MediaUpload 
-                        onSelect={ (media) => setAttributes({ media: media.sizes.full.url }) }
+                        onSelect={ onSelectImage }
                         allowedTypes={ ALLOWED_MEDIA_TYPES }
                         value={ media }
-                        render={ ( { open } ) => (
-                            <IconButton
-                                onClick={ open }
-                                icon="upload"
-                                className="editor-media-placeholder__button is-button is-default is-large"
-                            >
-                                Upload/edit image
-                            </IconButton>
-                        ) }
+                        render={ ( { open } ) => {
+                            return <div className="asideMediaContentEditor-mediaUpload">
+                                <img className="asideMediaContentEditor-mediaUpload-image" src={ media }/>
+                                <IconButton
+                                    onClick={ open }
+                                    icon="upload"
+                                    className="asideMediaContentEditor-mediaUpload-button editor-media-placeholder__button is-button is-default is-large"
+                                >
+                                    Upload/edit image
+                                </IconButton>
+                            </div>
+                        } }
                     />
                 </MediaUploadCheck>
-                <RichText
-                    tagName="h2"
-                    value={ title }
-                    placeholder="Add title..."
-                    onChange={ (title) => setAttributes({ title }) }
-                />
-                <RichText
-                    tagName="p"
-                    value={ content }
-                    placeholder="Add content..."
-                    onChange={ (content) => setAttributes({ content }) }
-                />
+                <div className="asideMediaContentEditor-content">
+                    <RichText
+                        tagName="h2"
+                        value={ title }
+                        placeholder="Add title..."
+                        onChange={ (title) => setAttributes({ title }) }
+                    />
+                    <RichText
+                        tagName="p"
+                        value={ content }
+                        placeholder="Add content..."
+                        onChange={ (content) => setAttributes({ content }) }
+                    />
+                </div>
             </div>
         ])
     },
@@ -94,13 +104,22 @@ registerBlockType('gutenberg-block/aside-media-content', {
         const blockProps = useBlockProps.save();
 
         return (
-            <div { ...blockProps}>
-                <img src={ media } />
-                <h2>{ title }</h2>
-                <RichText.Content
-                    tagName="p"
-                    value={ content }
-                />
+            <div { ...blockProps} className={ `${blockProps.className} asideMediaContent` }>
+                <div className="asideMediaContent-media">
+                    <img className="asideMediaContent-image" src={ media } alt={ title }/>
+                </div>
+                <div className="asideMediaContent-content">
+                    <RichText.Content
+                        tagName="h2"
+                        value={ title }
+                        className="asideMediaContent-title"
+                    />
+                    <RichText.Content
+                        tagName="p"
+                        value={ content }
+                        className="asideMediaContent-text"
+                    />
+                </div>
             </div>
         )
     },
