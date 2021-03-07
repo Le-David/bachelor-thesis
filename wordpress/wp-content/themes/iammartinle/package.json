@@ -8,14 +8,16 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:style": "sass static/styles/index.sass:build/styles/styles.css",
+    "build:style": "sass --no-source-map static/styles/index.sass:build/styles/styles.css --style compressed",
     "watch:style": "sass --watch static/styles/index.sass:build/styles/styles.css",
-    "build:styleEditor": "sass static/styles/indexEditor.sass:build/styles/styleEditor.css",
+    "build:styleEditor": "sass static/styles/indexEditor.sass:build/styles/styleEditor.css --style compressed",
     "watch:styleEditor": "sass --watch static/styles/indexEditor.sass:build/styles/styleEditor.css",
     "build:scripts": "wp-scripts build /static/scripts/gutenberg_blocks/index.js --output-path=build/scripts",
     "watch:scripts": "wp-scripts start /static/scripts/gutenberg_blocks/index.js --output-path=build/scripts",
-    "build": "run-p \"build:*\"",
-    "watch": "run-p \"watch:*\""
+    "autoprefix": "postcss build/styles/styles.css --replace --use autoprefixer",
+    "onchange": "onchange build/styles/styles.css -- postcss build/styles/styles.css --replace --use autoprefixer",
+    "build": "run-p \"build:*\" autoprefix",
+    "watch": "run-p \"watch:*\" onchange"
   },
   "keywords": [],
   "author": "",
