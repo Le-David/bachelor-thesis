@@ -18,19 +18,12 @@ function aside_media_content() {
         array( 'wp-edit-blocks' ) // (string[]) (Optional) An array of registered stylesheet handles this stylesheet depends on. Default value: array()
     );
 
-    wp_register_style(
-        'aside-media-content-style',
-        get_template_directory_uri() . '/build/styles/style.css',
-        array()
-    );
-
     register_block_type(
         'gutenberg-block/aside-media-content', // namespace/block-name - (Required structure block name) the namespace and name/slug of the block
         array(
             'apiVersion' => 2,
             'editor_script' => 'aside-media-content-script', // assign the name of the registered script to "editor_script" to handle the block
-            'editor_styles' => 'aside-media-content-styleEditor', // assign the name of the registered style to "editor_styles" to style the block
-            'style' => 'aside-media-content-style' // assign the name of the registered style to "style" to style the block on frontend
+            'editor_style' => 'aside-media-content-styleEditor', // assign the name of the registered style to "editor_styles" to style the block
         )
     );
 }

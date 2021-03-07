@@ -1,0 +1,18 @@
+@import '../crucialVariables'
+@import 'toRelative'
+
+// See README.md
+@function em($value, $font-size: $base-font-size)
+    $unit: unit($value)
+    $emValue: 0em
+
+    @if $unit == 'px' or unitless($value)
+        $emValue: _toRelative($value, $font-size, 1em)
+    @else if $unit == 'em'
+        $emValue: $value
+    @else if $unit == 'rem'
+        $emValue: _toRelative($value, $base-font-size, 1rem)
+    @else
+        @error 'The em function only accepts unitless values or values in pixels, ems or rems. Please stick to those.'
+
+    @return $emValue
