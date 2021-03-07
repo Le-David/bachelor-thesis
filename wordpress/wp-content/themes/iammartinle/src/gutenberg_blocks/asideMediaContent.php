@@ -18,12 +18,6 @@ function aside_media_content() {
         array( 'wp-edit-blocks' ) // (string[]) (Optional) An array of registered stylesheet handles this stylesheet depends on. Default value: array()
     );
 
-    wp_register_style(
-        'aside-media-content-style',
-        get_template_directory_uri() . '/build/styles/style.css',
-        array()
-    );
-
     register_block_type(
         'gutenberg-block/aside-media-content', // namespace/block-name - (Required structure block name) the namespace and name/slug of the block
         array(
