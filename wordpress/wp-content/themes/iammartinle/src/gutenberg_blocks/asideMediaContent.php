@@ -29,8 +29,7 @@ function aside_media_content() {
         array(
             'apiVersion' => 2,
             'editor_script' => 'aside-media-content-script', // assign the name of the registered script to "editor_script" to handle the block
-            'editor_styles' => 'aside-media-content-styleEditor', // assign the name of the registered style to "editor_styles" to style the block
-            'style' => 'aside-media-content-style' // assign the name of the registered style to "style" to style the block on frontend
+            'editor_style' => 'aside-media-content-styleEditor', // assign the name of the registered style to "editor_styles" to style the block
         )
     );
 }
