@@ -172,13 +172,32 @@ class StarterSite extends Timber\Site {
 		add_theme_support( 'menus' );
 	}
 
-	/** This Would return 'foo bar!'.
+	/**
+	 * Own Functions
+	 */
+
+	 /** This Would return 'foo bar!'.
 	 *
 	 * @param string $text being 'foo', then returned 'foo bar!'.
 	 */
 	public function myfoo( $text ) {
 		$text .= ' bar!';
 		return $text;
+	}
+
+	public function getMusings(){
+
+		$totalPages = get_option('posts_per_page');
+
+		$query = new WP_Query([
+			'post_type' =>'musings',
+			'post_status' =>'publish',
+			'order' => 'DESC',
+			'orderby' => 'date',
+			'posts_per_page' => $totalPages,
+		]);
+
+		return $query;
 	}
 
 	/** This is where you can add your own functions to twig.
@@ -188,6 +207,7 @@ class StarterSite extends Timber\Site {
 	public function add_to_twig( $twig ) {
 		$twig->addExtension( new Twig\Extension\StringLoaderExtension() );
 		$twig->addFilter( new Twig\TwigFilter( 'myfoo', array( $this, 'myfoo' ) ) );
+		$twig->addFunction( new Twig\TwigFunction( 'getMusings', array( $this, 'getMusings' ) ) );
 		return $twig;
 	}
 
