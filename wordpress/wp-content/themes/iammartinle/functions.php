@@ -70,6 +70,35 @@ class StarterSite extends Timber\Site {
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
 
+		/**
+		 *  Register Musings post type
+		 */
+		$musing_labels = array(
+			'name'               => _x( 'Musings', 'post type general name' ),
+			'singular_name'      => _x( 'Musing', 'post type singular name' ),
+			'add_new'            => _x( 'Add New', 'book' ),
+			'add_new_item'       => __( 'Add New Musing' ),
+			'edit_item'          => __( 'Edit Musing' ),
+			'new_item'           => __( 'New Musing' ),
+			'all_items'          => __( 'All Musings' ),
+			'view_item'          => __( 'View Musing' ),
+			'search_items'       => __( 'Search Musings' ),
+			'not_found'          => __( 'No musings found' ),
+			'not_found_in_trash' => __( 'No musings found in the Trash' ), 
+			'menu_name'          => 'Musings'
+		  );
+
+		  $musing_args = array(
+			'labels'        => $musing_labels,
+			'description'   => 'Posts for musings',
+			'public'        => true,
+			'menu_position' => 5,
+			'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+			'show_in_rest'  => true, // allow gutenberg
+			'rewrite'       => array( 'slug' => 'musings', 'with_front' => false )
+		  );
+
+		  register_post_type( 'musings', $musing_args ); 
 	}
 	/** This is where you can register custom taxonomies. */
 	public function register_taxonomies() {
