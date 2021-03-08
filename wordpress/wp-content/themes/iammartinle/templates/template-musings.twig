@@ -1,0 +1,6 @@
+{% extends "base.twig" %}
+{% set musing_posts = musing_posts|default([]) %}
+
+{% block content %}
+	{{dump(musings)}}
+{% endblock %}
