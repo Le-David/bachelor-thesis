@@ -1,6 +1,6 @@
 {% extends "base.twig" %}
-{% set musing_posts = musing_posts|default([]) %}
+{% set posts = related_posts|default([]) %}
 
 {% block content %}
-	{{dump(musings)}}
+	{{dump(posts)}}
 {% endblock %}
