@@ -93,7 +93,7 @@ class StarterSite extends Timber\Site {
 			'description'   => 'Posts for musings',
 			'public'        => true,
 			'menu_position' => 5,
-			'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+			'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'show_in_rest'  => true, // allow gutenberg
 			'rewrite'       => array( 'slug' => 'musings', 'with_front' => false )
 		  );

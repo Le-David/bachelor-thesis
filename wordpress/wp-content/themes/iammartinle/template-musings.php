@@ -11,7 +11,7 @@ $totalPages = get_option('posts_per_page');
 
 $timber_post     = new Timber\Post();
 $context['post'] = $timber_post;
-$context['musing_posts'] = Timber::get_posts([
+$context['related_posts'] = Timber::get_posts([
     'post_type' =>'musings',
     'post_status' =>'publish',
     'order' => 'DESC',

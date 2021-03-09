@@ -1,6 +1,14 @@
 {% extends "base.twig" %}
-{% set musing_posts = musing_posts|default([]) %}
+{% set posts = related_posts|default([]) %}
 
-{% block content %}
-	{{dump(musings)}}
+{% block fullPage %}
+	<article class="post post-type-musings">
+		{% for post in posts %}
+			<article class="musing">
+				<h1 class="musing-title">{{ post.post_title }}</h1>
+				<time class="musing-date" datetime="{{(post.post_date)|date('Y-m-d')}}">{{(post.post_date)|date('F j, Y')}}</time>
+				{{ post.post_content }}
+			</article>
+		{% endfor %}
+	</article>
 {% endblock %}
