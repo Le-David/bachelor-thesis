@@ -1,0 +1,10 @@
+<header class="header">
+	<div class="site">
+		<div class="header-logo">
+			<a href="{{ site.link }}" class="header-logo-link">
+				<img src="{{ static }}/images/logo-black-transparent-500x76.png" alt="I Am Martin Le" class="header-image">
+			</a>
+		</div>
+		{% include "menu.twig" with {'items': navigation.get_items} %}
+	</div>
+</header>
