@@ -1,1 +1,19 @@
-Sidebar in Timber. Add HTML to your hearts content.
+<aside class="sidebar" id="sidebar">
+    <ul class="sidebar-categories">
+        <li class="sidebar-category"><span class="sidebar-category-icon">icon</span></li>
+        {# {% for tax in terms %}
+            <li class="sidebar-category">
+                <a class="sidebar-category-link" href="/articles-categories/{{ tax.slug }}">{{ tax.name }}</a>
+            </li>
+        {% endfor %} #}
+        <li class="sidebar-category">
+            <a class="sidebar-category-link" href="#">Entrepreneurship</a>
+        </li>
+        <li class="sidebar-category">
+            <a class="sidebar-category-link" href="#">Innovation</a>
+        </li>
+        <li class="sidebar-category">
+            <a class="sidebar-category-link" href="#">Post-Covid-19</a>
+        </li>
+    </ul>
+</aside>
