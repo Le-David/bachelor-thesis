@@ -70,13 +70,38 @@ class StarterSite extends Timber\Site {
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
 
+		// Function to change "posts" to "Articles" in the admin side menu
+		function change_post_menu_label() {
+			global $menu;
+			global $submenu;
+			$menu[5][0] = 'Articles';
+			$submenu['edit.php'][5][0] = 'Articles';
+			$submenu['edit.php'][10][0] = 'Add Article';
+			$submenu['edit.php'][16][0] = 'Tags';
+		}
+		// Function to change post object labels to "Articles"
+		function change_post_object_label() {
+			global $wp_post_types;
+			$labels = &$wp_post_types['post']->labels;
+			$labels->name = 'Articles';
+			$labels->singular_name = 'Article';
+			$labels->add_new = 'Add Article';
+			$labels->add_new_item = 'Add Article';
+			$labels->edit_item = 'Edit Article';
+			$labels->new_item = 'Article';
+			$labels->view_item = 'View Article';
+			$labels->search_items = 'Search Articles';
+			$labels->not_found = 'No Articles found';
+			$labels->not_found_in_trash = 'No Articles found in Trash';
+		}
+
 		/**
 		 *  Register Musings post type
 		 */
 		$musing_labels = array(
 			'name'               => _x( 'Musings', 'post type general name' ),
 			'singular_name'      => _x( 'Musing', 'post type singular name' ),
-			'add_new'            => _x( 'Add New', 'book' ),
+			'add_new'            => _x( 'Add musing', 'musing' ),
 			'add_new_item'       => __( 'Add New Musing' ),
 			'edit_item'          => __( 'Edit Musing' ),
 			'new_item'           => __( 'New Musing' ),
@@ -88,7 +113,7 @@ class StarterSite extends Timber\Site {
 			'menu_name'          => 'Musings'
 		  );
 
-		  $musing_args = array(
+		$musing_args = array(
 			'labels'        => $musing_labels,
 			'description'   => 'Posts for musings',
 			'public'        => true,
@@ -96,9 +121,11 @@ class StarterSite extends Timber\Site {
 			'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'show_in_rest'  => true, // allow gutenberg
 			'rewrite'       => array( 'slug' => 'musings', 'with_front' => false )
-		  );
+		);
 
-		  register_post_type( 'musings', $musing_args ); 
+		register_post_type( 'musings', $musing_args );
+		add_action( 'admin_menu', 'change_post_menu_label' );
+		add_action( 'init', 'change_post_object_label' );
 	}
 	/** This is where you can register custom taxonomies. */
 	public function register_taxonomies() {
