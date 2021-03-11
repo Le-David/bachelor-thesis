@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+{% set posts = related_posts|default([]) %}
+
+{% block fullPage %}
+	<main class="post post-type-articles">
+
+		{% include 'sidebar.twig' %}
+
+		{% block article_content %}
+			<article class="articles-list" id="articles-list">
+				{% for post in posts %}
+					<article class="articles-in">
+						<a href="{{ link }}" class="articles-in-link">
+							<h1 class="articles-in-title">{{ post.post_title }}</h1>
+							<time class="articles-in-date" datetime="{{ (post.post_date)|date('Y-m-d') }}">{{ (post.post_date)|date('F j, Y') }}</time>
+						</a>
+						{% if taxonomies %}
+							<ul class="articles-in-taxonomies">
+								<li class="articles-in-tax-icon">icon</li>
+								{% for tax in taxonomies %}
+									<li class="articles-in-tax">
+										<a href="/articles-categories/{{ tax.slug }}" class="articles-in-tax-link">
+											<h5 class="articles-in-tax-title">{{ tax.name }}</h5>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</article>
+				{% endfor %}
+			</article>
+		{% endblock %}
+	</main>
+{% endblock %}
