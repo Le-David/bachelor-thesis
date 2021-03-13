@@ -11,6 +11,15 @@ $totalPages = get_option('posts_per_page');
 
 $timber_post     = new Timber\Post();
 $context['post'] = $timber_post;
+$context['categories'] = Timber::get_terms([
+    'post_type' =>'post',
+    'post_status' =>'publish',
+    'taxonomy' => 'category',
+    'orderby' => 'menu_order',
+    'order' => 'DESC',
+    'posts_per_page' => $totalPages,
+    'exclude' => $excludedCategory[0]->id,
+]);
 $context['related_posts'] = Timber::get_posts([
     'post_type' =>'post',
     'post_status' =>'publish',
