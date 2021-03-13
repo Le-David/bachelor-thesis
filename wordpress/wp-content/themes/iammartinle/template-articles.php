@@ -20,7 +20,7 @@ $context['categories'] = Timber::get_terms([
     'post_status' =>'publish',
     'taxonomy' => 'category',
     'orderby' => 'menu_order',
-    'order' => 'DESC',
+    'order' => 'ASC',
     'posts_per_page' => $totalPages,
     'exclude' => $excludedCategory[0]->id,
 ]);
