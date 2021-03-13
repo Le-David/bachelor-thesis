@@ -1,1 +1,28 @@
+.asideMediaContent
+	margin-bottom: $spacing
 
+	&-media
+		margin-bottom: 20px
+		border-radius: 100%
+		overflow: hidden
+
+	+media($break768)
+		display: flex
+		justify-content: center
+		align-items: center
+
+		&-media
+			flex: 0 0 300px
+			width: 300px
+
+		&-content
+			padding-left: 50px
+
+	+media($break992)
+
+		&-media
+			flex: 0 0 400px
+			width: 400px
+
+		&-content
+			padding-left: 100px
