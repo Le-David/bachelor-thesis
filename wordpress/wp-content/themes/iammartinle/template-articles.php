@@ -7,6 +7,10 @@
  */
 
 $context = Timber::context();
+$excludedCategory = Timber::get_terms([
+    'taxonomy' => 'category',
+    'slug' => 'uncategorized',
+    ]);
 $totalPages = get_option('posts_per_page');
 
 $timber_post     = new Timber\Post();
