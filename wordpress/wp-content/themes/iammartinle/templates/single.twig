@@ -4,7 +4,9 @@
     <article class="article" id="article">
         <h1 class="article-title">{{ post.post_title }}</h1>
         <time class="article-date" datetime="{{ (post.post_date)|date('Y-m-d') }}">{{ (post.post_date)|date('F j, Y') }}</time>
-        <img class="article-thumbnail" src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt ?: 'featured post thumbnail' }}" />
+        {% if post.thumbnail %}
+            <img class="article-thumbnail" src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt ?: 'featured post thumbnail' }}" />
+        {% endif %}
         {{ post.get_content }}
     </article>
 {% endblock %}
