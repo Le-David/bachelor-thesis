@@ -11,13 +11,20 @@
 			<article class="articles-list" id="articles-list">
 				{% for post in posts %}
 					{% set post_categories = post.terms('category') %}
+					{% set uncategorized %}
+						{% for post_category in post_categories %}
+							{% if post_category.name == 'Uncategorized' %}
+								true
+							{% endif %}
+						{% endfor %}
+					{% endset %}
 
 					<article class="articles-in">
 						<a href="/articles/{{ post.slug }}" class="articles-in-link">
 							<h1 class="articles-in-title">{{ post.post_title }}</h1>
 							<time class="articles-in-date" datetime="{{ (post.post_date)|date('Y-m-d') }}">{{ (post.post_date)|date('F j, Y') }}</time>
 						</a>
-						{% if post_categories %}
+						{% if post_categories and ('true' not in uncategorized) %}
 							<ul class="articles-in-categories">
 								<li class="articles-in-category-icon">
 									<svg class="shape shape-tag articles-in-category-icon-in" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 436.4 436.4">

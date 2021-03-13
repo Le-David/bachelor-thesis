@@ -1,6 +1,13 @@
 {% set categories = categories|default() %}
+{% set uncategorized %}
+    {% for category in categories %}
+        {% if category.name == 'Uncategorized' %}
+            true
+        {% endif %}
+    {% endfor %}
+{% endset %}
 
-{% if categories %}
+{% if categories and ('true' not in uncategorized) %}
     <aside class="sidebar" id="sidebar">
         <ul class="sidebar-categories">
             <li class="sidebar-category">
