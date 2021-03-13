@@ -13,7 +13,7 @@
 					{% set post_categories = post.terms('category') %}
 
 					<article class="articles-in">
-						<a href="/{{ post.slug }}" class="articles-in-link">
+						<a href="/articles/{{ post.slug }}" class="articles-in-link">
 							<h1 class="articles-in-title">{{ post.post_title }}</h1>
 							<time class="articles-in-date" datetime="{{ (post.post_date)|date('Y-m-d') }}">{{ (post.post_date)|date('F j, Y') }}</time>
 						</a>
@@ -27,7 +27,7 @@
 								</li>
 								{% for post_category in post_categories %}
 									<li class="articles-in-category">
-										<a href="/category/{{ post_category.slug }}" class="articles-in-category-link">
+										<a href="/articles/category/{{ post_category.slug }}" class="articles-in-category-link">
 											<h5 class="articles-in-category-title">{{ post_category.name }}</h5>
 										</a>
 									</li>
