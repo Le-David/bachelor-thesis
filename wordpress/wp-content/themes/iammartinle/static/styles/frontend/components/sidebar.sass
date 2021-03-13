@@ -1,22 +1,14 @@
 .sidebar
-    +absolute
-    visibility: hidden
-    opacity: 1
-    
-    +media($break1400)
-        visibility: visible
-        opacity: 1
-        width: 300px
-        height: 100%
-        right: 100%
-        
-        &-categories
-            +sticky(20px 0 0 0)
-            list-style-type: none
-            text-align: right
-            padding: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-bottom: 2 * $spacing
 
-        &-category
+    &-categories
+        display: inline-block
+        text-align: center
+
+    &-category
             display: inline-block
             margin-left: 5px
             transition: transform $transition ease
@@ -38,3 +30,17 @@
                 &-in
                     width: 18px
                     height: 18px
+
+    +media($break1400)
+        display: block
+        +absolute
+        width: 300px
+        height: 100%
+        margin-bottom: 0
+        right: 100%
+        
+        &-categories
+            +sticky(20px 0 0 0)
+            list-style-type: none
+            text-align: right
+            padding: 0
