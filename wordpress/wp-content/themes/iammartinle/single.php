@@ -13,6 +13,8 @@ $context         = Timber::context();
 $timber_post     = Timber::query_post();
 $context['post'] = $timber_post;
 
+$context['categories'] = get_the_category();
+
 if ( post_password_required( $timber_post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
 } else {
