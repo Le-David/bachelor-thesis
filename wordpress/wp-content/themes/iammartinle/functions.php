@@ -142,7 +142,7 @@ class StarterSite extends Timber\Site {
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
 		$context['menu']  = new Timber\Menu();
 		$context['navigation']  = new Timber\Menu('primary-navigation');
-		$context['footer']  = new Timber\Menu('footer');
+		$context['social_channels']  = new Timber\Menu('social-channels');
 		$context['static']  = get_template_directory_uri() . '/static';
 		$context['site']  = $this;
 		return $context;
