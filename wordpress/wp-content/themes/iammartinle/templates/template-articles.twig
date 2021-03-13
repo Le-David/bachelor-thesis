@@ -1,0 +1,49 @@
+{% extends "base.twig" %}
+{% set posts = related_posts|default([]) %}
+
+{% block fullPage %}
+	<main class="post post-type-articles">
+
+		{% include 'sidebar.twig' with {
+			categories: categories,
+		} %}
+		{% block article_content %}
+			<article class="articles-list" id="articles-list">
+				{% for post in posts %}
+					{% set post_categories = post.terms('category') %}
+					{% set uncategorized %}
+						{% for post_category in post_categories %}
+							{% if post_category.name == 'Uncategorized' %}
+								true
+							{% endif %}
+						{% endfor %}
+					{% endset %}
+
+					<article class="articles-in">
+						<a href="/articles/{{ post.slug }}" class="articles-in-link">
+							<h1 class="articles-in-title">{{ post.post_title }}</h1>
+							<time class="articles-in-date" datetime="{{ (post.post_date)|date('Y-m-d') }}">{{ (post.post_date)|date('F j, Y') }}</time>
+						</a>
+						{% if post_categories and ('true' not in uncategorized) %}
+							<ul class="articles-in-categories">
+								<li class="articles-in-category-icon">
+									<svg class="shape shape-tag articles-in-category-icon-in" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 436.4 436.4">
+										<path d="M340.4 23.2h-134a32 32 0 0 0-22.6 9.4L9.4 207a32 32 0 0 0 0 45.2l134 134a32 32 0 0 0 45.2 0L363 211.8a32 32 0 0 0 9.4-22.6v-134a32 32 0 0 0-32-32zm-56 112a24 24 0 1 1 0-48 24 24 0 0 1 0 48z"/>
+										<path d="M404.4 55.2v149a27.8 27.8 0 0 1-8.2 19.6L219 401.1l2.7 2.7a32 32 0 0 0 45.3 0l160-160a32 32 0 0 0 9.4-22.6v-134a32 32 0 0 0-32-32z"/>
+									</svg>
+								</li>
+								{% for post_category in post_categories %}
+									<li class="articles-in-category">
+										<a href="/articles/category/{{ post_category.slug }}" class="articles-in-category-link">
+											<h5 class="articles-in-category-title">{{ post_category.name }}</h5>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</article>
+				{% endfor %}
+			</article>
+		{% endblock %}
+	</main>
+{% endblock %}
