@@ -53,14 +53,14 @@ registerBlockType('gutenberg-block/aside-media-content', {
         }
 
         return ([
-            <div { ...blockProps} className={ `${blockProps.className} asideMediaContentEditor` }>
+            <div { ...blockProps} className={ `${blockProps.className} asideMediaContent` }>
                 <MediaUploadCheck>
                     <MediaUpload 
                         onSelect={ onSelectImage }
                         allowedTypes={ ALLOWED_MEDIA_TYPES }
                         value={ media }
                         render={ ( { open } ) => {
-                            return <div className="asideMediaContentEditor-mediaUpload">
+                            return <div className="asideMediaContentEditor-mediaUpload asideMediaContent-media">
                                 <img className="asideMediaContentEditor-mediaUpload-image" src={ media }/>
                                 <IconButton
                                     onClick={ open }
@@ -73,18 +73,20 @@ registerBlockType('gutenberg-block/aside-media-content', {
                         } }
                     />
                 </MediaUploadCheck>
-                <div className="asideMediaContentEditor-content">
+                <div className="asideMediaContentEditor-content asideMediaContent-content">
                     <RichText
                         tagName="h2"
                         value={ title }
                         placeholder="Add title..."
                         onChange={ (title) => setAttributes({ title }) }
+                        className="asideMediaContent-title"
                     />
                     <RichText
                         tagName="p"
                         value={ content }
                         placeholder="Add content..."
                         onChange={ (content) => setAttributes({ content }) }
+                        className="asideMediaContent-text"
                     />
                 </div>
             </div>

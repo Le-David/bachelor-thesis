@@ -1,3 +1,14 @@
-.wp-block-gutenberg-block
-    
-    &-aside-media-content
+.asideMediaContentEditor
+    &-mediaUpload
+        +relative
+
+        &-button
+            display: none
+            +absolute(50% null null 50%)
+            transform: translate(-50%, -50%)
+            background-color: rgba(255, 255, 255, 0.9)
+            border-radius: 4px
+
+        &:hover &
+            &-button
+                display: block
